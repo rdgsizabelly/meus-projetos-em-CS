@@ -1,126 +1,69 @@
 ﻿using System;
+
 class Program{
+
     static void Main(){
-        int[] vetor1 = new int[5];
-        int[] vetor2 = new int[5];
-        int[] vetor3 = new int[5];
-        int[,] matriz = new int[2,5]{{11, 22, 33, 44, 55}, {66, 77, 88, 99, 00}};
+        //metodo com retorno 
+         int v1, v2, r;
+         v1 = int.Parse(Console.ReadLine());
+         v2 = int.Parse(Console.ReadLine());
+         r = soma(v1, v2);
+         Console.WriteLine("A soma de {0} e {1} é igual a: {2}", v1, v2, r);
+         //soma(v1, v2);
 
-        //gerar num aleatorio
-        Random random = new Random();
-        for (int i = 0; i < vetor1.Length; i++){
-            vetor1[i] = random.Next(51);
-        }
-        Console.WriteLine("Elementos dos vetor1: ");
-        foreach (int n in vetor1){
-            Console.WriteLine(n);
-        }
+        //metodo passagem por ref e valor
+         int num = 10;
+         dobrar( ref num);
+         Console.WriteLine(num);
 
-        //procurar num
-        //public static int BinarySearch(array, valor);
-        Console.WriteLine("BinarySearch");
-        int procurando = 3;
-        int pos = Array.BinarySearch(vetor1, procurando);
-        Console.WriteLine("Valor {0} está na posição: {1}", procurando, pos);
-        Console.WriteLine("--------------------------------------------------------------------");
+        //argumento out para retornar mais de um resultado
+        int divid, divis, quoc, rest;
+        divid = 10;
+        divis = 5;
+        quoc= D1 (divid, divis, out rest);
+        Console.WriteLine("{0} / {1} = {2} e o resto = {3}", divid, divis, quoc, rest);
 
-        //copiar array inteiro ou uma certa qntd
-        //public static void Copy(Ar_origem, Ar_destino, qtde_elementos);
-        Console.WriteLine("Copy");
-        Array.Copy(vetor1, vetor2, vetor1.Length); 
-        foreach (int m in vetor2){
-            Console.WriteLine(m);
-        }
-        Console.WriteLine("--------------------------------------------------------------------");
-
-        //copiar array a partir de certa posição
-        //public void CopyTo(Ar_origem,Ar_destino,a_partir_desta_pos);
-        Console.WriteLine("CopyTo");
-        vetor1.CopyTo(vetor3,0);
-        foreach (int b in vetor3){
-            Console.WriteLine(b);
-        }
-        Console.WriteLine("--------------------------------------------------------------------");
-
-        //public long GetLongLength(dimensão);
-        Console.WriteLine("GetLongLength");
-        long qtdeElementosVetor = vetor1.GetLongLength(0);
-        Console.WriteLine("Quantidade de elementos: {0}", qtdeElementosVetor);
-        Console.WriteLine("--------------------------------------------------------------------");
-
-        //public int GetLowerBound(dimensão);
-        Console.WriteLine("GetLowerBound");
-        int menorIndiceVetor = vetor1.GetLowerBound(0);
-        int menorIndiceMatriz = matriz.GetLowerBound(1);
-        Console.WriteLine("Menor Indice do vetor: {0}", menorIndiceVetor);
-        Console.WriteLine("Menor Indice da matriz: {0}",menorIndiceMatriz);
-        Console.WriteLine("--------------------------------------------------------------------");
-
-        //public int GetUpperBound(dimensão);
-        Console.WriteLine("GetUpperBound");
-        int maiorIndiceVetor = vetor1.GetUpperBound(0);
-        int maiorIndiceMatriz = matriz.GetUpperBound(1);
-        Console.WriteLine("Maior indice do vetor: {0}", maiorIndiceVetor);
-        Console.WriteLine("Maior indice da matriz: {0}", maiorIndiceMatriz);
-        Console.WriteLine("--------------------------------------------------------------------");
-
-        // public object GetValue(dimensão);
-        Console.WriteLine("GetValue");
-        int valor0 = Convert.ToInt32(vetor1.GetValue(3));
-        int valor1 = Convert.ToInt32(matriz.GetValue(1,3));
-        Console.WriteLine("Valor na posição 3 do vetor1: {0}", valor0);
-        Console.WriteLine("Valor na posição 1x3 da matriz: {0}", valor1);
-        Console.WriteLine("--------------------------------------------------------------------");
-
-        //public static int IndexOf(Array, valor);
-        Console.WriteLine("IndexOf");
-        int indice0 = Array.IndexOf(vetor1, 3);
-        Console.WriteLine("Indice do primeiro valor 3: {0}", indice0);
-        Console.WriteLine("--------------------------------------------------------------------");
-
-        //public static int LastIndexOf(Array, valor);
-        Console.WriteLine("LatIndexOf");
-        int indice1 = Array.LastIndexOf(vetor1,3);
-        Console.WriteLine("Indice do ultimo valor 3: {0}", indice1);
-        Console.WriteLine("--------------------------------------------------------------------");
-
-        //public static void Reverse(vetor);
-        Console.WriteLine("Reverse");
-        Array.Reverse(vetor3);
-        foreach (int n in vetor3){
-            Console.WriteLine(n);
-        }
-        Console.WriteLine("--------------------------------------------------------------------");
-
-        //public void SetValue(object valor, long pos);
-        Console.WriteLine("SetValue");
-        vetor2.SetValue(99, 0);
-        for (int i = 0; i < vetor2.Length; i++){
-            vetor2.SetValue(0,i);
-        }
-        Console.WriteLine("Vetor 2: ");
-        foreach (int n in vetor2){
-            Console.WriteLine(n);
-        }
-        Console.WriteLine("--------------------------------------------------------------------");
-
-        //public static void Sort(array);
-        Console.WriteLine("Sort");
-        Array.Sort(vetor1);
-        Array.Sort(vetor2);
-        Array.Sort(vetor3);
-        Console.WriteLine("Vetor 1: ");
-        foreach (int n in vetor1){
-            Console.WriteLine(n);
-        }
-        Console.WriteLine("Vetor 2: ");
-        foreach (int n in vetor2){
-            Console.WriteLine(n);
-        }
-        Console.WriteLine("Vetor 3: ");
-        foreach (int n in vetor3){
-            Console.WriteLine(n);
-        }
+        soma2(23, 32);
         Console.ReadKey();
     }
+
+    //metodo com retorno
+     static int soma(int n1, int n2){
+         int result = n1 + n2;
+       //Console.WriteLine("A soma de {0} e {1} é igual a: {2}", n1, n2, result);
+        return result;
+     }
+
+    //metodo passagem por ref e por valor
+     static void dobrar(ref int valor){
+
+         valor *= 2;
+     }
+
+    //argumento out para retornar mais de um resultado
+    static int D1(int dividendo, int divisor, out int resto){
+        int quociente;
+        quociente= dividendo/divisor;
+        resto= dividendo%divisor;
+        return quociente;
+
+    }
+
+    //argumento params para criar argumentos sem precisar declarar
+    static void soma2(params int[] n){
+        int rest=0;
+
+        if(n.Length < 1){
+            Console.WriteLine("Não existem numero sufucientes");
+        }else if(n.Length < 2){
+            Console.WriteLine("Somente um numero informado. num: {0}", n[0]);
+        }else{
+            for (int i = 0; i < n.Length; i++)
+            {
+                rest += n[i];
+            }
+            Console.WriteLine("A soma dos numero é: {0}", rest);
+        }
+    }
+
 }
